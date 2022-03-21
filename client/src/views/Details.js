@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export default props => {
    const [ person, setPerson ] = useState({});
@@ -13,9 +13,12 @@ export default props => {
    }, []);
 
    return(
-      <div>
-         <p>First Name: {person.firstName}</p>
-         <p>Last Name: {person.lastName}</p>
-      </div>
+      <>
+         <div>
+            <p>First Name: {person.firstName}</p>
+            <p>Last Name: {person.lastName}</p>
+         </div>
+         <Link to={'/people/' + person._id + '/edit'}>Edit</Link>
+      </>
    )
 }

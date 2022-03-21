@@ -18,6 +18,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/people' element={<Main />} />
           <Route path='/person/:id' element={<Details />} />
+          <Route path='/people/:id/edit' element={<Update />} />
           <Route path='*' element={<BadLink />} />
         </Route>
       </Routes>
