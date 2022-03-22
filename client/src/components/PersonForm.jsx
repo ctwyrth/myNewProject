@@ -1,22 +1,17 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 
 export default props => {
-   const [ firstName, setFirstName ] = useState("");
-   const [ lastName, setLastName ] = useState("");
-
-   const handleOnSubmit = (e) => {
+   const { initialFirstName, initialLastName, onSubmitProp } = props;
+   const [ firstName, setFirstName ] = useState(initialFirstName);
+   const [ lastName, setLastName ] = useState(initialLastName);
+   
+   const onSubmitHandler = e => {
       e.preventDefault();
-      axios.post('http://localhost:8000/api/people', {
-         firstName,
-         lastName
-      })
-      .then(res => console.log("Response: ", res))
-      .catch(err => console.log("Error: ", err));
+      onSubmitProp({firstName, lastName});
    }
 
    return(
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={onSubmitHandler}>
          <p>
             <label>First Name:</label>
             <input type="text" name="firstName" onChange={e => setFirstName(e.target.value)} />
